@@ -1,0 +1,64 @@
+TRANSLATION LAB 12
+
+
+Task 1: Create the VM
+Define a VM using advanced options
+
+
+CODE:
+
+gcloud beta compute --project=qwiklabs-gcp-03-fe15a8118015 instances create mc-server --zone=us-central1-a --machine-type=e2-medium --subnet=default --network-tier=PREMIUM --maintenance-policy=MIGRATE --service-account=86392749806-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/trace.append,https://www.googleapis.com/auth/devstorage.read_write --image=debian-10-buster-v20200910 --image-project=debian-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=mc-server --create-disk=mode=rw,size=50,type=projects/qwiklabs-gcp-03-fe15a8118015/zones/us-central1-a/diskTypes/pd-ssd,name=minecraft-disk,device-name=minecraft-disk --no-shielded-secure-boot --no-shielded-vtpm --no-shielded-integrity-monitoring --reservation-affinity=any
+
+
+
+
+
+
+
+
+gcloud beta compute --project=qwiklabs-gcp-03-fe15a8118015 instances create mc-server --zone=us-central1-a --machine-type=e2-medium --subnet=default --address=35.239.242.197 --network-tier=PREMIUM --maintenance-policy=MIGRATE --service-account=86392749806-compute@developer.gserviceaccount.com --scopes=https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/trace.append,https://www.googleapis.com/auth/devstorage.read_write --tags=minecraft-server --image=debian-10-buster-v20200910 --image-project=debian-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=mc-server --create-disk=mode=rw,size=50,type=projects/qwiklabs-gcp-03-fe15a8118015/zones/us-central1-a/diskTypes/pd-ssd,name=minecraft-disk,device-name=minecraft-disk --no-shielded-secure-boot --no-shielded-vtpm --no-shielded-integrity-monitoring --reservation-affinity=any
+
+
+
+
+Task 2: Prepare the data disk
+Create a directory and format and mount the disk
+
+CONFIGURATION: NO CODE
+
+
+
+Task 3: Install and run the application
+
+
+CONFIGURATION: NO CODE
+
+
+
+gcloud compute --project=qwiklabs-gcp-03-fe15a8118015 firewall-rules create minecraft-rule --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:25565 --source-ranges=0.0.0.0/0 --target-tags=minecraft-server
+
+
+
+
+
+
+
+Task 5: Schedule regular backups
+CONFIGURATION: NO CODE
+
+
+
+export YOUR_BUCKET_NAME=minecraft-bucket-1
+
+
+Task 6: Server maintenance
+
+CONFIGURATION: NO CODE
+
+
+
+
+
+
+
+
